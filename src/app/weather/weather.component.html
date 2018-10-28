@@ -1,0 +1,89 @@
+<div class="container">
+  <div class="form-row">
+    <div class="form-group col-6">
+      <label for="startDate">Start date</label>
+      <angular2-date-picker id="startDate" [(ngModel)]="startDate" [settings]="settings"></angular2-date-picker>
+    </div>
+
+    <div class="form-group col-6">
+      <label for="endDate">End date</label>
+      <angular2-date-picker id="endDate" [(ngModel)]="endDate" [settings]="settings"></angular2-date-picker>
+    </div>
+  </div>
+  <div class="form-group">
+    <button class="col-md-4 btn btn-primary" (click)="filter()">Filter</button>
+  </div>
+</div>
+
+<div class="container">
+  <div *ngIf="weatherData && weatherData[0]">
+    <h3>
+      Statistical data
+    </h3>
+    <table class="table table-bordered">
+      <thead>
+      <tr>
+        <th scope="col">Average temperature</th>
+        <th scope="col">Minimum temperature</th>
+        <th scope="col">Maximum temperature</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>{{avgtemp}}°C</td>
+        <td>{{mintemp}}°C</td>
+        <td>{{maxtemp}}°C</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<div class="container" *ngIf="weatherData">
+  <div *ngIf="weatherHData && weatherHData[0]">
+    <h3>
+      Historical data
+    </h3>
+    <table class="table table-bordered">
+      <thead>
+      <tr>
+        <th scope="col">Date</th>
+        <th scope="col">Temperature</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let weather of weatherHData">
+        <td>{{weather.dateTime | date:'short'}}</td>
+        <td>{{weather.temp}}°C</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="weatherFData && weatherFData[0]">
+    <h3>
+        Weather forecast
+    </h3>
+    <table class="table table-bordered">
+      <thead>
+      <tr>
+        <th scope="col">Date</th>
+        <th scope="col">Temperature</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let weather of weatherFData">
+        <td>{{weather.dateTime | date:'short'}}</td>
+        <td>{{weather.temp}}°C</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="container" *ngIf="!(weatherData && weatherData[0])">
+  <h3>
+    No data found.
+  </h3>
+</div>
