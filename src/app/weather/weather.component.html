@@ -39,51 +39,52 @@
   </div>
 </div>
 
+<div class="container">
+  <div class="row" *ngIf="weatherData">
+    <div class="col-md-6" *ngIf="weatherHData && weatherHData[0]">
+      <h3>
+        Historical data
+      </h3>
+      <table class="table table-bordered">
+        <thead>
+        <tr>
+          <th scope="col">Date</th>
+          <th scope="col">Temperature</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let weather of weatherHData">
+          <td>{{weather.dateTime | date:'short'}}</td>
+          <td>{{weather.temp}}°C</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
 
-<div class="container" *ngIf="weatherData">
-  <div *ngIf="weatherHData && weatherHData[0]">
-    <h3>
-      Historical data
-    </h3>
-    <table class="table table-bordered">
-      <thead>
-      <tr>
-        <th scope="col">Date</th>
-        <th scope="col">Temperature</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let weather of weatherHData">
-        <td>{{weather.dateTime | date:'short'}}</td>
-        <td>{{weather.temp}}°C</td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div *ngIf="weatherFData && weatherFData[0]">
-    <h3>
+    <div class="col-md-6" *ngIf="weatherFData && weatherFData[0]">
+      <h3>
         Weather forecast
-    </h3>
-    <table class="table table-bordered">
-      <thead>
-      <tr>
-        <th scope="col">Date</th>
-        <th scope="col">Temperature</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let weather of weatherFData">
-        <td>{{weather.dateTime | date:'short'}}</td>
-        <td>{{weather.temp}}°C</td>
-      </tr>
-      </tbody>
-    </table>
+      </h3>
+      <table class="table table-bordered">
+        <thead>
+        <tr>
+          <th scope="col">Date</th>
+          <th scope="col">Temperature</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let weather of weatherFData">
+          <td>{{weather.dateTime | date:'short'}}</td>
+          <td>{{weather.temp}}°C</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
-</div>
 
-<div class="container" *ngIf="!(weatherData && weatherData[0])">
-  <h3>
-    No data found.
-  </h3>
+  <div class="container" *ngIf="!(weatherData && weatherData[0])">
+    <h3>
+      No data found.
+    </h3>
+  </div>
 </div>

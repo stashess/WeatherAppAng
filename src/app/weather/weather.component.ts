@@ -49,7 +49,7 @@ export class WeatherComponent implements OnInit, AfterViewInit {
       if (this.weatherData.length > 0) {
         this.statisticalProcess();
         for (const weather of this.weatherData) {
-          if (weather.dateTime.localeCompare(formatDate(Date.now() 'yyyy-MM-ddTHH:mm', 'EN-GB')) >= 0) {
+          if (weather.dateTime.localeCompare(formatDate(Date.now(), 'yyyy-MM-ddTHH:mm', 'EN-GB')) >= 0) {
             this.weatherFData.push(weather);
           } else {
             this.weatherHData.push(weather);
@@ -79,9 +79,10 @@ export class WeatherComponent implements OnInit, AfterViewInit {
 
     }
     this.avgtemp = Math.round(sum / this.weatherData.length);
+
   }
 
-  clearValues(){
+  clearValues() {
     this.weatherFData = new Array();
     this.weatherHData = new Array();
     this.mintemp = 1000;
